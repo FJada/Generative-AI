@@ -36,7 +36,9 @@ label next_scene:
     # Display dialogue from another character.
     "A disembodied figure comes into focus after you get your bearings"
 
-    disembodiedfigure "You're dead. Welcome to the afterlife."
+    disembodiedfigure "You... you have died. Welcome to the gray place."
+    disembodiedfigure "A place neither good nor bad, simply the middle place for neutral souls like yours"
+
 
     # Present dialogue options to the player.
     menu:
