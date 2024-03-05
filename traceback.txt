@@ -1,0 +1,24 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+  File "game/script.rpy", line 39, in script
+    stranger "You... you have died. Welcome to the gray place."
+Exception: Sayer 'stranger' is not defined.
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "game/script.rpy", line 39, in script
+    stranger "You... you have died. Welcome to the gray place."
+  File "/Users/jadaforrester/Downloads/renpy-8.2.0-sdk/renpy/ast.py", line 2557, in execute
+    Say.execute(self)
+  File "/Users/jadaforrester/Downloads/renpy-8.2.0-sdk/renpy/ast.py", line 575, in execute
+    who = eval_who(self.who, self.who_fast)
+  File "/Users/jadaforrester/Downloads/renpy-8.2.0-sdk/renpy/ast.py", line 464, in eval_who
+    raise Exception("Sayer '%s' is not defined." % who)
+Exception: Sayer 'stranger' is not defined.
+
+macOS-10.16-x86_64-i386-64bit x86_64
+Ren'Py 8.2.0.24012702
+test 1.0
+Tue Mar  5 03:10:24 2024

@@ -1,4 +1,5 @@
-﻿
+﻿define stranger = Character("Stranger")
+
 label start:
 
     # Display a text prompt asking the player to select their pronouns.
@@ -19,12 +20,12 @@ label start:
     # Proceed to the next part of the game.
     jump next_scene
 
-label next_scene:
+# label next_scene:
 
-    "Hello, [player_pronouns]. Welcome to the game!"
-    # You can also store the selected pronouns in a persistent variable
-    # to be used throughout the game.
-    $ persistent.player_pronouns = player_pronouns
+#     "Hello, [player_pronouns]. Welcome to the game!"
+#     # You can also store the selected pronouns in a persistent variable
+#     # to be used throughout the game.
+#     $ persistent.player_pronouns = player_pronouns
 
 
 label next_scene:
@@ -36,8 +37,9 @@ label next_scene:
     # Display dialogue from another character.
     "A disembodied figure comes into focus after you get your bearings"
 
-    disembodiedfigure "You... you have died. Welcome to the gray place."
-    disembodiedfigure "A place neither good nor bad, simply the middle place for neutral souls like yours"
+    stranger "You... you have died. Welcome to the gray place."
+
+    stranger "A place neither good nor bad, simply the middle place for neutral souls like yours"
 
 
     # Present dialogue options to the player.
