@@ -12,7 +12,7 @@ label start:
             $ player_pronouns = "he/him"
         "They/Them":
             $ player_pronouns = "they/them"
-
+        
     # Display a confirmation message with the selected pronouns.
     "You've selected [player_pronouns] as your pronouns."
 
@@ -26,6 +26,34 @@ label next_scene:
     # to be used throughout the game.
     $ persistent.player_pronouns = player_pronouns
 
+
+label next_scene:
+
+    $ persistent.player_pronouns = player_pronouns
+
+    "You wake with a violent gasp of air"
+
+    # Display dialogue from another character.
+    "A disembodied figure comes into focus after you get your bearings"
+
+    disembodiedfigure "You're dead. Welcome to the afterlife."
+
+    # Present dialogue options to the player.
+    menu:
+        "Who are you?":
+            stranger "I am the gatekeeper of this realm. You may call me Elysium."
+        "Where am I?":
+            stranger "You are in the realm of the departed, the afterlife."
+        "Why am I here?":
+            stranger "That's for you to discover. Your journey has just begun."
+        "I don't believe you.":
+            stranger "Believe what you will, but the truth remains."
+
+    # After the player selects a dialogue option, continue with the game.
+    jump next_scene_continued
+
+label next_scene_continued:
     # Continue with the rest of your game.
     # Add more labels and scenes as needed.
+
 
