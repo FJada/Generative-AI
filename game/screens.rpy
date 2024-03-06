@@ -103,7 +103,7 @@ screen gameUI:
         xalign 1.0
         yalign 0.0
         xoffset -30
-        yoffset 30
+        yoffset 70
         idle "UI/stats_idle.png"
         action ShowMenu("StatsUI")
         
@@ -148,7 +148,7 @@ screen StatsUI:
         xalign 1.0
         yalign 0.0
         xoffset -30
-        yoffset 30
+        yoffset 70
         auto "UI/return_%s.png"
         action Return()
 
