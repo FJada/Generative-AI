@@ -1,4 +1,4 @@
-﻿default stats = {
+default stats = {
     "good": 0,
     "evil": 0,
     "kind": 0,
@@ -92,10 +92,11 @@ label next_scene:
     $ persistent.player_pronouns = player_pronouns
     python:
         import random
-        scene_names = [1,2]  # List of scene names
-        next_story = random.choice(scene_names)  # Choose a random scene from the list
+        scenes = [1]  # List of scene names
+        next_story = random.choice(scenes)  # Choose a random scene from the list
 
     scene bg scene1-2
+    show screen gameUI
     play music "myserioussong.mp3"
     # Display player thoughts.
     "..."
@@ -263,7 +264,9 @@ label secondchoice:
 
 
 label end_scene:
+   
     scene bg scene1-2
+    show screen gameUI
     play music "startscreen.mp3"
     show title4:
         xalign 0.5
@@ -283,32 +286,33 @@ label end_scene:
     # $ flow("statistics")
     # $ show "Your current stats:\n\nGood: {good}\nSassy: {evil}\nKind: {kind}\nRude: {rude}\nRainbow Power: {rainbowpower}".format(**stats)
 
-    $ flow("statistics")
-    python:
-        stats_string = "Your current stats:\n\nGood: {good}\nSassy: {sassy}\nKind: {kind}\nRude: {rude}\nRainbow Power: {rainbowpower}".format(**stats)
-        renpy.show("statistics", stats_string)
+    #$ flow("statistics")
+    # python:
+    #     stats_string = "Your current stats:\n\nGood: {good}\nSassy: {sassy}\nKind: {kind}\nRude: {rude}\nRainbow Power: {rainbowpower}".format(**stats)
+    #     renpy.show("statistics", stats_string)
+        
     # Present the player with option to play again.
     menu:
         "Play Again?":
             jump start
-
-
     return
 
 
 label chefstory1:
 
-    "Guardian Angel: I sense a troubled situation in a kitchen..."
+    Elysium "I sense a troubled situation in a kitchen..."
+
     "You enter the chaotic cooking show set, where you observe Frank, a nervous chef."
 
-
-    "Frank: (Panicking) This can't be happening! I'm going to ruin everything."
+    Frank "Panicking) This can't be happening! I'm going to ruin everything."
 
     "Frank's thoughts: 'I can't believe I signed up for this amateur show! Pressure's getting to me.'"
 
+    "Guardian Angel: (Appearing before Frank)"
 
-    "Guardian Angel: (Appearing before Frank) Don't worry, chef. I'm here to help lighten the mood."
-    menu:
+    Elysium "Don't worry, chef. I'm here to help lighten the mood."
+
+    menu chefhelp:
         "Culinary Inspiration":
             Elysium "Why don't I send him an imaginary Gordon Ramsay-like voice for motivation, but with a comedic twist?'"
             "Frank: (Laughing nervously) Wait, is that Chef Ramsey... err, his hilarious twin encouraging me? It's working!"

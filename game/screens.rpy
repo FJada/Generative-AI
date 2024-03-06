@@ -95,6 +95,64 @@ style frame:
 ##
 ## https://www.renpy.org/doc/html/screen_special.html#say
 
+# stats
+
+## Screen with Stats Button
+screen gameUI:
+    imagebutton:
+        xalign 1.0
+        yalign 0.0
+        xoffset -30
+        yoffset 30
+        idle "UI/stats_idle.png"
+        action ShowMenu("StatsUI")
+        
+## Stats UI
+screen StatsUI:
+    
+    frame:
+        xalign 0.5
+        yalign 0.5
+        xpadding 30
+        ypadding 30
+
+        hbox:
+            spacing 40
+            # Text Column
+            vbox:
+
+                spacing 10
+                text "good" size 40
+                text "evil" size 40
+                text "kind" size 40
+                text "rude" size 40
+                text "sassy" size 40
+                text "boring" size 40
+                text "rainbowpower" size 40
+
+            # Values Column     
+            vbox:    
+                spacing 10
+                text "[stats['good']]" size 40
+                text "[stats['evil']]" size 40
+                text "[stats['kind']]" size 40
+                text "[stats['rude']]" size 40
+                text "[stats['sassy']]" size 40
+                text "[stats['boring']]" size 40
+                text "[stats['rainbowpower']]" size 40
+
+
+            
+    ## Show a Return button
+    imagebutton:
+        xalign 1.0
+        yalign 0.0
+        xoffset -30
+        yoffset 30
+        auto "UI/return_%s.png"
+        action Return()
+
+
 screen say(who, what):
     style_prefix "say"
 
