@@ -105,25 +105,26 @@ label next_scene:
     menu learn:
         # set learnList :
         "Really? Amazing!":
-            # $ localize("Innocent +1");
             $ stats["good"] += 1
+            "1+ Innocent"
             
         "You're a real comedian, huh?":
-            # $ localize("Sassy +1");
             $ stats["sassy"] += 1
+            "1+ Sassy +1"
             
         "Up yours, jerk.":
-            # $ localize("Rude +1");
             $ stats["rude"] += 1
-
+            "1+ Rude"
+            
         "That can't be.":
+            "Boring +1"
             stranger "Well, that was original."
-            # $ localize("Boring +1");
             $ stats["boring"] += 1
             
-        # "But...I'm gay.":
-        #     $ localize("Rainbow power +1");
+        "But...I'm gay.":
             $ stats["rainbowpower"] += 1
+            "Rainbow power +1"
+            
 
     $ persistent.stats = stats
 
@@ -160,45 +161,52 @@ label next_scene:
 label firstchoice:
 
     $ persistent.player_pronouns = player_pronouns
+    $ persistent.stats = stats
 
     scene bg scene2
-    "You wake up in a confused and dreamlike state. You hear splashes of water and yelling echoing in the distance."
+    "You wake up in a confused and dreamlike state. There are splashes of water and yelling echoing in the distance."
     you "Where am I? Arguhh my head!"
     play music "<loop 0.1>partysong.mp3"
     show chad normal at left:
         yalign 0.5
         xalign 0.2
     with dissolve
-    chad "WHATS GOOD! Wait what are you doing on the floor?"
-    you "Oh Chad, whats good bro. Honestly I'm not too sure myself."
+    chad "WHAT'S GOOD BRO! Wait, what are you doing on the floor?"
+    you "Oh Chad, what's good man. Honestly, I'm not too sure myself."
     you "Where are we?"
-    chad "What are you even going on about? We were talking about this all month?"
-    chad "Its the biggest party of the whole semester!"
-    you "Oh right."
+    chad "What are you even going on about? We were talking about this all month!!"
+    chad "It's the biggest party of the whole semester!"
+    you "Oh, right."
     chad "Honestly though, its not as fun as I thought it would be..."
-    chad "I am known as the daredevil - yet I haven't been able to do anything!"
-    stranger "Are you going to live up to your expectations? Be good."
-    you "Ow my head!"
-    chad "You good?"
-    you "Yea its nothing don't worry."
-    chad "Well, I am not gonna chicken out. I am gonna do something sick!"
+    chad "You know I'm the daredevil, but this place has been so lame I haven't been able to do anything crazy!"
+    stranger "...Are you going to live up to your expectations? Time to be good, guardian angel."
+    you "Ugh, my head."
+    chad "Dude, you good? You look half-dead, bro."
+    you "Yeah, it's nothin'. Don't worry."
+    chad "Well, I am NOT gonna chicken out. I am gonna do something sick!"
     hide chad
 
     menu dangerouschoice:
         "Let Chad decide to jump off the balcony into the pool and simply watch":
-            you "Ugh. Ok I guess ill watch you jump into the pool."
+            you "Ugh. Okay, I guess I'll watch you jump into the pool."
             chad "Awesome!"
             $ stats["rude"] += 1
             $ stats["evil"] += 1
-            "You gained one stat point in being rude and one in evil"
+            "You gained: 1+ Rude and 1+ Evil"
             jump firstchoiceA
             
         "Convince Chad to have a drink instead ":
-            chad "You never stop bothering me huh. Fine get that bottle over there!"
+            chad "You never stop bothering me, huh. Fine, get that bottle over there!"
             $ stats["good"] += 1
-            "You gained one stat point in being good"
+            "You gained: +1 Good"
             jump firstchoiceB
-    return
+    
+    stranger "...Interesting choice."
+    stranger "But no time to dwell, others await."
+    
+    jump end_scene
+
+    
     
 
 label firstchoiceA:
@@ -206,17 +214,17 @@ label firstchoiceA:
     show chad normal:
         xalign 0.5
         yalign 0.5
-    chad "Wow this is higher than I thought"
-    stranger "No going back for him now huh?"
+    chad "Wow, this is higher than I thought."
+    stranger "You are really bad at this whole guardian angle thing."
     you "Shut up."
-    chad "Well here goes nothing!"
+    chad "Well, here goes nothing! YOLO!!"
     
     menu jumpintopool:
         "Jump":
             hide chad
             chad "AHHHHHH"
-            "Hitting his head against the head of the pool, he bleeds out. You can hear all the yelling fade away."
-            stranger "Bad job. Freak Accident. He died. Not a good companion."
+            "Hitting his head against the head of the pool, Chad takes an L on life. You can hear all the yelling fade away."
+            stranger "Another 'Fratboy Freak Accident by the Pool' for the books."
             jump secondchoice
 
 
@@ -226,13 +234,41 @@ label firstchoiceB:
         yalign 0.5
         xalign 0.2
     with dissolve
-    chad "Hmm. Not that much fun but atleast this tastes good"
+    chad "Hmm. Not that much fun, but at least this tastes good!"
     stranger "Good work. He would have died if he pulled that ridiculous stunt."
     jump secondchoice
 
 label secondchoice:
     pass
 
-    
+
+label end_scene:
+    scene bg scene1-2
+    play music "startscreen.mp3"
+    show title4:
+        xalign 0.5
+        yalign 0.1  
+
+    $ persistent.player_pronouns = player_pronouns
+    $ persistent.stats = stats
+
+    stranger "Entertaining, as always."
+    you "So...how did I do?"
+    stranger "Let us see..."
+
+    "Display stats"
+
+    "Display Guardian Angle Score"
+
+    #flow("statistics")
+    #show "Your current stats:\n\nGood: {good}\nSassy: {evil}\nKind: {kind}\nRude: {rude}\nRainbow Power: {rainbowpower}".format(**stats)
+
+    # Present the player with option to play again.
+    menu:
+        "Play Again?":
+            jump start
+
+
+    return
 
 
