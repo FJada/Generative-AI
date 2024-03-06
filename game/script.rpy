@@ -1,4 +1,8 @@
 ﻿define stranger = Character("Stranger")
+define chad = Character("Chad")
+define you = Character("You")
+
+image chad normal = "chad_image.png"
 
 label start:
 
@@ -61,11 +65,56 @@ label next_scene:
             stranger "Believe what you will, but the truth remains."
 
         "Ok, I am ready...":
-            jump next_scene_continued
-    jump learn         
+            jump firstchoice
 
-label next_scene_continued:
-    # Continue with the rest of your game.
-    # Add more labels and scenes as needed.
+    jump learn     
+    return    
+
+
+label firstchoice:
+
+    $ persistent.player_pronouns = player_pronouns
+
+    scene bg scene2
+    "You wake up in a confused and dreamlike state. You hear splashes of water echoing in the distance"
+    you "Where am I? Arguhh my head"
+    show chad normal at left:
+        yalign 0.5
+        xalign 0.2
+    with dissolve
+    chad "WHATS GOOD! Wait what are you doing on the floor?"
+    you "Oh Chad, whats good bro. Honestly I'm not too sure myself"
+    you "Where are we?"
+    chad "What are you even going on about? We were talking about this all month?"
+    chad "Its the biggest party of the whole semester!"
+    you "Oh right."
+    chad "Honestly though, its not as fun as I thought it would be..."
+    chad "You're known as the daredevil yet I haven't seen you do anything"
+    stranger "Are you going to live up to your expectations?"
+    you "Ow my head!"
+    chad "You good?"
+    you "Yea its nothing don't worry"
+    chad "Well, are you gonna chicken out or what. Do something sick!"
+
+    menu dangerouschoice:
+        "Decide to jump off the roof into the pool":
+            you "Haha fine, watch me jump into the pool from that roof"
+            chad "Awesome!"
+            jump firstchoiceA
+            
+        "Guzzle an entire bottle of vodka":
+            you "You never stop bothering me huh. Fine get that bottle over there"
+            chad "Radical!"
+            jump firstchoiceB
+
+    
+
+label firstchoiceA:
+    pass
+label firstchoiceB:
+    pass
+        
+
+    
 
 

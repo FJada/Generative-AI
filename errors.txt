@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 58: expected 'label_name' not found.
-    jump menu
-        ^
+File "game/script.rpy", line 82: Line is indented, but the preceding show statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    yalign 1
+    ^
 
 Ren'Py Version: Ren'Py 8.2.1.24030407
-Tue Mar  5 19:26:02 2024
+Tue Mar  5 22:50:16 2024
