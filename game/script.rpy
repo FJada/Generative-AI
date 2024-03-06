@@ -59,6 +59,7 @@ label press_start():
     menu:
         "Start Game":
             jump start
+    stop music fadeout 1.0
 
 label start:
     scene black 
@@ -84,7 +85,7 @@ label next_scene:
 
     $ persistent.player_pronouns = player_pronouns
     scene bg scene1-2
-
+    play music "myserioussong.mp3"
     # Display player thoughts.
     "..."
 
@@ -150,7 +151,7 @@ label next_scene:
 
     # Save the statistics to persist the data across sessions
     # $ save("stats", ignore=[], values=list(stats.values()))
-
+    stop music fadeout 1.0
     jump firstchoice
 
     return    
@@ -163,6 +164,7 @@ label firstchoice:
     scene bg scene2
     "You wake up in a confused and dreamlike state. You hear splashes of water and yelling echoing in the distance."
     you "Where am I? Arguhh my head!"
+    play music "<loop 0.1>partysong.mp3"
     show chad normal at left:
         yalign 0.5
         xalign 0.2
@@ -180,14 +182,15 @@ label firstchoice:
     chad "You good?"
     you "Yea its nothing don't worry."
     chad "Well, I am not gonna chicken out. I am gonna do something sick!"
-    
+    hide chad
 
     menu dangerouschoice:
         "Let Chad decide to jump off the balcony into the pool and simply watch":
-            you "Haha fine, ill watch you jump into the pool."
+            you "Ugh. Ok I guess ill watch you jump into the pool."
             chad "Awesome!"
-            $ stats["boring"] += 1
-            "You gained one stat point in being boring"
+            $ stats["rude"] += 1
+            $ stats["evil"] += 1
+            "You gained one stat point in being rude and one in evil"
             jump firstchoiceA
             
         "Convince Chad to have a drink instead ":
@@ -213,6 +216,7 @@ label firstchoiceA:
             chad "AHHHHHH"
             "Hitting his head against the head of the pool, he bleeds out. You can hear all the yelling fade away."
             stranger "Bad job. Freak Accident. He died. Not a good companion."
+            jump secondchoice
 
 
 label firstchoiceB:
@@ -223,6 +227,10 @@ label firstchoiceB:
     with dissolve
     chad "Hmm. Not that much fun but atleast this tastes good"
     stranger "Good work. He would have died if he pulled that ridiculous stunt."
+    jump secondchoice
+
+label secondchoice:
+    pass
 
     
 
