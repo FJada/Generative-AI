@@ -1,8 +1,25 @@
-﻿define stranger = Character("Stranger")
+﻿#Initiatize characters
+define player = Character("Player")
+define stranger = Character("Stranger")
+
+# scene characters
 define chad = Character("Chad")
-define you = Character("You")
+define fratbro = Character("FratBro")
 
 image chad normal = "chad_image.png"
+image fratbro normal = "chad_image.png"
+
+#initialize guardian angle variables
+
+# Initialize dictionaries for storing the statistics with default values
+$ stats = {"good": Var("good", initial=0),
+         "evil": Var("evil", initial=0),
+         "kind": Var("kind", initial=0),
+         "rude": Var("rude", initial=0),
+         "sassy": Var("sassy", initial=0),
+         "boring": Var("boring", initial=0)
+         "rainbowpower": Var("rainbowpower", initial=0)
+         }
 
 label start:
 
@@ -37,52 +54,89 @@ label next_scene:
     $ persistent.player_pronouns = player_pronouns
     scene bg scene1-2
 
-    "You wake with a violent gasp of air"
+    # Display player thoughts.
+    "..."
 
-    # Display dialogue from another character.
-    "A disembodied figure comes into focus after you get your bearings"
+    # Display player words.
+    player "...where am I?"
 
-    stranger "You... you have died. Welcome to the gray place."
+    # "You awake with a violent gasp"
+    #"A disembodied figure comes into focus after you get your bearings"
+    # stranger "You... you have died. Welcome to the gray place."
+    #stranger "A place neither good nor bad, simply the middle place for neutral souls like yours"
 
-    stranger "A place neither good nor bad, simply the middle place for neutral souls like yours"
-
+    stranger "You... you have died, and gone to Heaven. Your parents are so proud."
 
     # Present dialogue options to the player.
     $ learnList = []
 
     menu learn:
         set learnList
-        "Who are you?":
-            stranger "I am the gatekeeper of this realm. You may call me Elysium."
+        #player "Really?":
+            localize("Innocent +1")
+            stats["good"].value += 1
             
-        "Where am I?":
-            stranger "You are in the realm of the departed, the afterlife."
+        player "You're a real comedian, huh?":
+            localize("Sassy +1")
+            stats["Sassy"].value += 1
             
-        "Why am I here?":
-            stranger "That's for you to discover. Your journey has just begun."
-            
-        "I don't believe you.":
-            stranger "Believe what you will, but the truth remains."
+        player "Up yours, jerk.":
+            localize("Rude +1")
+            stats["rude"].value += 1
 
-        "Ok, I am ready...":
-            jump firstchoice
+        player "That can't be.":
+            stranger "Well, that was original."
+            localize("Boring +1")
+            stats["boring"].value += 1
+            
+        player "But...I'm gay.":
+            localize("Rainbow power +1")
+            stats["rainbowpower"].value += 1
 
-    jump learn     
+
+    player "Woah, what was that? +1 what?"
+
+    stranger "That was a step towards figuring out what kind of guardian angle you will become."
+
+    player "Guardian angle? Wait -- I'm really dead?"
+
+    stranger "Yes. You are in the realm of the departed. The afterlife. But now you have a chance to make a difference for those left."
+
+    player "What was I before?"
+        
+    stranger "I am the gatekeeper of this realm. You may call me Elysium."
+
+    player "How do you know if I will be a good guardian angle?"
+
+    stranger "We don't. This is your test, and your journey alone."
+
+    player "But--"
+
+    stranger "This is just prototype, grasshopper. Time to start level 1."
+
+    player "Now hold on just a min--"
+
+# Save the statistics to persist the data across sessions
+save("stats", ignore=[], values=list(stats.values()))
+
+    jump firstchoice
+
     return    
-
 
 label firstchoice:
 
     $ persistent.player_pronouns = player_pronouns
+    $ persistent.stats = stats
 
     scene bg scene2
     "You wake up in a confused and dreamlike state. You hear splashes of water echoing in the distance."
+
     you "Where am I? Arguhh my head!"
     show chad normal at left:
         yalign 0.5
         xalign 0.2
     with dissolve
-    chad "WHATS GOOD! Wait what are you doing on the floor?"
+    chad "YO WHAT'S GOOD! Wait bro... what are you doing on the floor?"
     you "Oh Chad, whats good bro. Honestly I'm not too sure myself."
     you "Where are we?"
     chad "What are you even going on about? We were talking about this all month?"
