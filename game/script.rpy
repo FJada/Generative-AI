@@ -12,14 +12,16 @@ image fratbro normal = "chad_image.png"
 #initialize guardian angle variables
 
 # Initialize dictionaries for storing the statistics with default values
-$ stats = {"good": Var("good", initial=0),
-         "evil": Var("evil", initial=0),
-         "kind": Var("kind", initial=0),
-         "rude": Var("rude", initial=0),
-         "sassy": Var("sassy", initial=0),
-         "boring": Var("boring", initial=0)
-         "rainbowpower": Var("rainbowpower", initial=0)
-         }
+$ stats = {
+    "good": Var("good", initial=0),
+    "evil": Var("evil", initial=0),
+    "kind": Var("kind", initial=0),
+    "rude": Var("rude", initial=0),
+    "sassy": Var("sassy", initial=0),
+    "boring": Var("boring", initial=0),  
+    "rainbowpower": Var("rainbowpower", initial=0)
+}
+
 
 label start:
 
@@ -71,8 +73,8 @@ label next_scene:
     $ learnList = []
 
     menu learn:
-        set learnList
-        #player "Really?":
+        set learnList:
+        player "Really?":
             localize("Innocent +1")
             stats["good"].value += 1
             
