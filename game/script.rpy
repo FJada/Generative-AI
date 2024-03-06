@@ -181,6 +181,7 @@ label bradstory1:
     $ persistent.stats = stats
 
     scene bg scene2
+    show screen gameUI
     "You wake up in a confused and dreamlike state. There are splashes of water and yelling echoing in the distance."
     you "Where am I? Arguhh my head!"
     play music "<loop 0.1>partysong.mp3"
@@ -232,6 +233,7 @@ label bradstory1:
 
 label firstchoiceA:
     scene bg roof
+    show screen gameUI
     show chad normal:
         xalign 0.5
         yalign 0.5
@@ -251,6 +253,7 @@ label firstchoiceA:
 
 label firstchoiceB:
     scene bg scene2
+    show screen gameUI
     show chad normal at left:
         yalign 0.5
         xalign 0.2
@@ -279,24 +282,13 @@ label end_scene:
     you "So...how did I do?"
     Elysium "Let us see..."
 
-    "Display stats"
-
-    "Display Guardian Angle Score"
-
-    # $ flow("statistics")
-    # $ show "Your current stats:\n\nGood: {good}\nSassy: {evil}\nKind: {kind}\nRude: {rude}\nRainbow Power: {rainbowpower}".format(**stats)
-
-    #$ flow("statistics")
-    # python:
-    #     stats_string = "Your current stats:\n\nGood: {good}\nSassy: {sassy}\nKind: {kind}\nRude: {rude}\nRainbow Power: {rainbowpower}".format(**stats)
-    #     renpy.show("statistics", stats_string)
+    "click on stats to view"
         
     # Present the player with option to play again.
     menu:
         "Play Again?":
             jump start
     return
-
 
 label chefstory1:
 
