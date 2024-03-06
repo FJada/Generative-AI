@@ -1,4 +1,14 @@
-﻿#Initiatize characters
+﻿default stats = {
+    "good": 0,
+    "evil": 0,
+    "kind": 0,
+    "rude": 0,
+    "sassy": 0,
+    "boring": 0,
+    "rainbowpower": 0
+}
+
+#Initiatize 
 define player = Character("Player")
 define stranger = Character("Stranger")
 
@@ -11,16 +21,16 @@ image fratbro normal = "chad_image.png"
 
 #initialize guardian angle variables
 
-# Initialize dictionaries for storing the statistics with default values
-$ stats = {
-    "good": Var("good", initial=0),
-    "evil": Var("evil", initial=0),
-    "kind": Var("kind", initial=0),
-    "rude": Var("rude", initial=0),
-    "sassy": Var("sassy", initial=0),
-    "boring": Var("boring", initial=0),  
-    "rainbowpower": Var("rainbowpower", initial=0)
-}
+#Initialize dictionaries for storing the statistics with default values
+# $ stats = {
+#     "good": Var("good", initial=0),
+#     "evil": Var("evil", initial=0),
+#     "kind": Var("kind", initial=0),
+#     "rude": Var("rude", initial=0),
+#     "sassy": Var("sassy", initial=0),
+#     "boring": Var("boring", initial=0),  
+#     "rainbowpower": Var("rainbowpower", initial=0)
+# }
 
 
 label start:
@@ -43,14 +53,6 @@ label start:
     # Proceed to the next part of the game.
     jump next_scene
 
-# label next_scene:
-
-#     "Hello, [player_pronouns]. Welcome to the game!"
-#     # You can also store the selected pronouns in a persistent variable
-#     # to be used throughout the game.
-#     $ persistent.player_pronouns = player_pronouns
-
-
 label next_scene:
 
     $ persistent.player_pronouns = player_pronouns
@@ -70,31 +72,32 @@ label next_scene:
     stranger "You... you have died, and gone to Heaven. Your parents are so proud."
 
     # Present dialogue options to the player.
-    $ learnList = []
+    # learnList = []
 
     menu learn:
-        set learnList :
-        player "Really?":
-            localize("Innocent +1")
-            stats["good"].value += 1
+        # set learnList :
+        "Really?":
+            # $ localize("Innocent +1");
+            $ stats["good"] += 1
             
-        player "You're a real comedian, huh?":
-            localize("Sassy +1")
-            stats["Sassy"].value += 1
+        "You're a real comedian, huh?":
+            # $ localize("Sassy +1");
+            $ stats["Sassy"] += 1
             
-        player "Up yours, jerk.":
-            localize("Rude +1")
-            stats["rude"].value += 1
+        "Up yours, jerk.":
+            # $ localize("Rude +1");
+            $ stats["rude"] += 1
 
-        player "That can't be.":
+        "That can't be.":
             stranger "Well, that was original."
-            localize("Boring +1")
-            stats["boring"].value += 1
+            # $ localize("Boring +1");
+            $ stats["boring"] += 1
             
-        player "But...I'm gay.":
-            localize("Rainbow power +1")
-            stats["rainbowpower"].value += 1
+        # "But...I'm gay.":
+        #     $ localize("Rainbow power +1");
+            $ stats["rainbowpower"] += 1
 
+    $ persistent.stats = stats
 
     player "Woah, what was that? +1 what?"
 
@@ -118,8 +121,8 @@ label next_scene:
 
     player "Now hold on just a min--"
 
-# Save the statistics to persist the data across sessions
-    save("stats", ignore=[], values=list(stats.values()))
+    # Save the statistics to persist the data across sessions
+    # $ save("stats", ignore=[], values=list(stats.values()))
 
     jump firstchoice
 
@@ -131,35 +134,36 @@ label firstchoice:
     $ persistent.stats = stats
 
     scene bg scene2
+    
     "You wake up in a confused and dreamlike state. You hear splashes of water echoing in the distance."
 
-    you "Where am I? Arguhh my head!"
+    player "Where am I? Arguhh my head!"
     show chad normal at left:
         yalign 0.5
         xalign 0.2
     with dissolve
     chad "YO WHAT'S GOOD! Wait bro... what are you doing on the floor?"
-    you "Oh Chad, whats good bro. Honestly I'm not too sure myself."
-    you "Where are we?"
+    player "Oh Chad, whats good bro. Honestly I'm not too sure myself."
+    player "Where are we?"
     chad "What are you even going on about? We were talking about this all month?"
     chad "Its the biggest party of the whole semester!"
-    you "Oh right."
+    player "Oh right."
     chad "Honestly though, its not as fun as I thought it would be..."
     chad "You're known as the daredevil - yet I haven't seen you do anything!"
     stranger "Are you going to live up to your expectations?"
-    you "Ow my head!"
+    player "Ow my head!"
     chad "You good?"
-    you "Yea its nothing don't worry."
+    player "Yea its nothing don't worry."
     chad "Well, are you gonna chicken out or what. Do something sick!"
 
     menu dangerouschoice:
         "Decide to jump off the roof into the pool":
-            you "Haha fine, watch me jump into the pool from that roof."
+            player"Haha fine, watch me jump into the pool from that roof."
             chad "Awesome!"
             jump firstchoiceA
             
         "Guzzle an entire bottle of vodka":
-            you "You never stop bothering me huh. Fine get that bottle over there!"
+            player "You never stop bothering me huh. Fine get that bottle over there!"
             chad "Radical!"
             jump firstchoiceB
 
