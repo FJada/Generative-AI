@@ -1,4 +1,13 @@
-﻿define stranger = Character("Stranger")
+﻿default stats = {
+    "good": 0,
+    "evil": 0,
+    "kind": 0,
+    "rude": 0,
+    "sassy": 0,
+    "boring": 0,
+    "rainbowpower": 0
+}
+define stranger = Character("Stranger")
 define chad = Character("Chad")
 define you = Character("You")
 
@@ -70,51 +79,80 @@ label start:
     # Proceed to the next part of the game.
     jump next_scene
 
-# label next_scene:
-
-#     "Hello, [player_pronouns]. Welcome to the game!"
-#     # You can also store the selected pronouns in a persistent variable
-#     # to be used throughout the game.
-#     $ persistent.player_pronouns = player_pronouns
-
-
 label next_scene:
 
     $ persistent.player_pronouns = player_pronouns
     scene bg scene1-2
 
-    "You wake with a violent gasp of air"
+    # Display player thoughts.
+    "..."
 
-    # Display dialogue from another character.
-    "A disembodied figure comes into focus after you get your bearings"
+    # Display player words.
+    player "...where am I?"
 
-    stranger "You... you have died. Welcome to the gray place."
+    # "You awake with a violent gasp"
+    #"A disembodied figure comes into focus after you get your bearings"
+    # stranger "You... you have died. Welcome to the gray place."
+    #stranger "A place neither good nor bad, simply the middle place for neutral souls like yours"
 
-    stranger "A place neither good nor bad, simply the middle place for neutral souls like yours"
-
+    stranger "You... you have died, and gone to Heaven. Your parents are so proud."
 
     # Present dialogue options to the player.
-    $ learnList = []
+    # learnList = []
 
     menu learn:
-        set learnList
-        "Who are you?":
-            stranger "I am the gatekeeper of this realm. You may call me Elysium."
+        # set learnList :
+        "Really?":
+            # $ localize("Innocent +1");
+            $ stats["good"] += 1
             
-        "Where am I?":
-            stranger "You are in the realm of the departed, the afterlife."
+        "You're a real comedian, huh?":
+            # $ localize("Sassy +1");
+            $ stats["Sassy"] += 1
             
-        "Why am I here?":
-            stranger "That's for you to discover. Your journey has just begun."
-            
-        "I don't believe you.":
-            stranger "Believe what you will, but the truth remains."
+        "Up yours, jerk.":
+            # $ localize("Rude +1");
+            $ stats["rude"] += 1
 
-        "Ok, I am ready...":
-            jump firstchoice
+        "That can't be.":
+            stranger "Well, that was original."
+            # $ localize("Boring +1");
+            $ stats["boring"] += 1
+            
+        # "But...I'm gay.":
+        #     $ localize("Rainbow power +1");
+            $ stats["rainbowpower"] += 1
 
-    jump learn     
-    return
+    $ persistent.stats = stats
+
+    you "Woah, what was that? +1 what?"
+
+    stranger "That was a step towards figuring out what kind of guardian angle you will become."
+
+    you "Guardian angle? Wait -- I'm really dead?"
+
+    stranger "Yes. You are in the realm of the departed. The afterlife. But now you have a chance to make a difference for those left."
+
+    you "What was I before?"
+        
+    stranger "I am the gatekeeper of this realm. You may call me Elysium."
+
+    you "How do you know if I will be a good guardian angle?"
+
+    stranger "We don't. This is your test, and your journey alone."
+
+    you "But--"
+
+    stranger "This is just prototype, grasshopper. Time to start level 1."
+
+    you "Now hold on just a min--"
+
+    # Save the statistics to persist the data across sessions
+    # $ save("stats", ignore=[], values=list(stats.values()))
+
+    jump firstchoice
+
+    return    
 
 
 label firstchoice:
