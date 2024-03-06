@@ -100,7 +100,7 @@ label next_scene:
 
     menu learn:
         # set learnList :
-        "Really?":
+        "Really? Amazing!":
             # $ localize("Innocent +1");
             $ stats["good"] += 1
             
@@ -125,7 +125,7 @@ label next_scene:
 
     you "Woah, what was that? +1 what?"
 
-    stranger "That was a step towards figuring out what kind of guardian angel you will become."
+    stranger "That was one stat point towards figuring out what kind of guardian angel you will become."
 
     you "Guardian angel? Wait -- I'm really dead?"
 
@@ -171,38 +171,45 @@ label firstchoice:
     chad "Its the biggest party of the whole semester!"
     you "Oh right."
     chad "Honestly though, its not as fun as I thought it would be..."
-    chad "You're known as the daredevil - yet I haven't seen you do anything!"
-    stranger "Are you going to live up to your expectations?"
+    chad "I am known as the daredevil - yet I haven't been able to do anything!"
+    stranger "Are you going to live up to your expectations? Be good."
     you "Ow my head!"
     chad "You good?"
     you "Yea its nothing don't worry."
-    chad "Well, are you gonna chicken out or what. Do something sick!"
+    chad "Well, I am not gonna chicken out. I am gonna do something sick!"
+    
 
     menu dangerouschoice:
-        "Decide to jump off the roof into the pool":
-            you "Haha fine, watch me jump into the pool from that roof."
+        "Let Chad decide to jump off the balcony into the pool and simply watch":
+            you "Haha fine, ill watch you jump into the pool."
             chad "Awesome!"
+            $ stats["boring"] += 1
+            "You gained one stat point in being boring"
             jump firstchoiceA
             
-        "Drink 3 shots of vodka":
-            you "You never stop bothering me huh. Fine get that bottle over there!"
-            chad "Radical!"
+        "Convince Chad to have a drink instead ":
+            chad "You never stop bothering me huh. Fine get that bottle over there!"
+            $ stats["good"] += 1
+            "You gained one stat point in being good"
             jump firstchoiceB
     return
     
 
 label firstchoiceA:
     scene bg roof
-    you "Wow this is higher than I thought"
-    stranger "No going back now huh?"
+    show chad normal:
+        xalign 0.5
+        yalign 0.5
+    chad "Wow this is higher than I thought"
+    stranger "No going back for him now huh?"
     you "Shut up."
-    you "Well here goes nothing!"
+    chad "Well here goes nothing!"
 
     menu jumpintopool:
         "Jump":
-            you "AHHHHHH"
-            "Hitting your head against the head of the pool, you slowly bleed out. You can hear Chad's yelling fade away."
-            stranger "Good job. Freak Accident. You died."
+            chad "AHHHHHH"
+            "Hitting his head against the head of the pool, he bleeds out. You can hear all the yelling fade away."
+            stranger "Bad job. Freak Accident. He died. Not a good companion."
 
 
 label firstchoiceB:
@@ -210,7 +217,9 @@ label firstchoiceB:
     show chad normal at left:
         yalign 0.5
         xalign 0.2
-        
+    with dissolve
+    chad "Hmm. Not that much fun but atleast this tastes good"
+    stranger "Good work. He would have died if he pulled that ridiculous stunt."
 
     
 
