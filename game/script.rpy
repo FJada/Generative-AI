@@ -86,7 +86,7 @@ label next_scene:
     "..."
 
     # Display player words.
-    player "...where am I?"
+    you "...where am I?"
 
     # "You awake with a violent gasp"
     #"A disembodied figure comes into focus after you get your bearings"
