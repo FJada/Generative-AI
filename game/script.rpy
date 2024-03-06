@@ -106,7 +106,7 @@ label next_scene:
             
         "You're a real comedian, huh?":
             # $ localize("Sassy +1");
-            $ stats["Sassy"] += 1
+            $ stats["sassy"] += 1
             
         "Up yours, jerk.":
             # $ localize("Rude +1");
@@ -125,9 +125,9 @@ label next_scene:
 
     you "Woah, what was that? +1 what?"
 
-    stranger "That was a step towards figuring out what kind of guardian angle you will become."
+    stranger "That was a step towards figuring out what kind of guardian angel you will become."
 
-    you "Guardian angle? Wait -- I'm really dead?"
+    you "Guardian angel? Wait -- I'm really dead?"
 
     stranger "Yes. You are in the realm of the departed. The afterlife. But now you have a chance to make a difference for those left."
 
@@ -192,7 +192,7 @@ label firstchoice:
     
 
 label firstchoiceA:
-    scene bg scene7
+    scene bg roof
     you "Wow this is higher than I thought"
     stranger "No going back now huh?"
     you "Shut up."
