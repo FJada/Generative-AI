@@ -1,24 +1,42 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
-While running game code:
-  File "game/script.rpy", line 39, in script
-    stranger "You... you have died. Welcome to the gray place."
-Exception: Sayer 'stranger' is not defined.
+Compiling ATL code at game/script.rpy:45
+  File "renpy/common/00start.rpy", line 241, in script call
+    call _splashscreen from _call_splashscreen_1
+  File "game/script.rpy", line 44, in script
+    show title:
+Exception: Could not evaluate expression 'x' when compiling ATL.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 39, in script
-    stranger "You... you have died. Welcome to the gray place."
-  File "/Users/jadaforrester/Downloads/renpy-8.2.0-sdk/renpy/ast.py", line 2557, in execute
-    Say.execute(self)
-  File "/Users/jadaforrester/Downloads/renpy-8.2.0-sdk/renpy/ast.py", line 575, in execute
-    who = eval_who(self.who, self.who_fast)
-  File "/Users/jadaforrester/Downloads/renpy-8.2.0-sdk/renpy/ast.py", line 464, in eval_who
-    raise Exception("Sayer '%s' is not defined." % who)
-Exception: Sayer 'stranger' is not defined.
+  File "renpy/common/00start.rpy", line 241, in script call
+    call _splashscreen from _call_splashscreen_1
+  File "game/script.rpy", line 44, in script
+    show title:
+  File "C:\Users\School\Downloads\renpy-8.2.1-sdk\renpy\ast.py", line 1113, in execute
+    show_imspec(self.imspec, atl=getattr(self, "atl", None))
+  File "C:\Users\School\Downloads\renpy-8.2.1-sdk\renpy\ast.py", line 1076, in show_imspec
+    renpy.config.show(name,
+  File "C:\Users\School\Downloads\renpy-8.2.1-sdk\renpy\exports.py", line 765, in show
+    sls.add(layer, img, key, zorder, behind, at_list=at_list, name=name, atl=atl, default_transform=default_transform, transient=transient)
+  File "C:\Users\School\Downloads\renpy-8.2.1-sdk\renpy\display\scenelists.py", line 474, in add
+    thing.visit_all(lambda d : None)
+  File "C:\Users\School\Downloads\renpy-8.2.1-sdk\renpy\display\displayable.py", line 421, in visit_all
+    for d in self.visit():
+  File "C:\Users\School\Downloads\renpy-8.2.1-sdk\renpy\atl.py", line 764, in visit
+    block = self.compile()
+  File "C:\Users\School\Downloads\renpy-8.2.1-sdk\renpy\atl.py", line 671, in compile
+    block = self.atl.compile(self.context)
+  File "C:\Users\School\Downloads\renpy-8.2.1-sdk\renpy\atl.py", line 873, in compile
+    statements = [ i.compile(ctx) for i in self.statements ]
+  File "C:\Users\School\Downloads\renpy-8.2.1-sdk\renpy\atl.py", line 873, in <listcomp>
+    statements = [ i.compile(ctx) for i in self.statements ]
+  File "C:\Users\School\Downloads\renpy-8.2.1-sdk\renpy\atl.py", line 1234, in compile
+    raise Exception("Could not evaluate expression %r when compiling ATL." % expr)
+Exception: Could not evaluate expression 'x' when compiling ATL.
 
-macOS-10.16-x86_64-i386-64bit x86_64
-Ren'Py 8.2.0.24012702
+Windows-10-10.0.19045 AMD64
+Ren'Py 8.2.1.24030407
 test 1.0
-Tue Mar  5 03:10:24 2024
+Wed Mar  6 01:01:29 2024
