@@ -73,7 +73,7 @@ label next_scene:
     $ learnList = []
 
     menu learn:
-        set learnList:
+        set learnList :
         player "Really?":
             localize("Innocent +1")
             stats["good"].value += 1
@@ -119,7 +119,7 @@ label next_scene:
     player "Now hold on just a min--"
 
 # Save the statistics to persist the data across sessions
-save("stats", ignore=[], values=list(stats.values()))
+    save("stats", ignore=[], values=list(stats.values()))
 
     jump firstchoice
 
