@@ -53,7 +53,7 @@ label splashscreen:
 label press_start():
     scene bg scene1-2
     play music "startscreen.mp3"
-    show title3:
+    show title4:
         xalign 0.5
         yalign 0.1
     menu:
@@ -210,9 +210,10 @@ label firstchoiceA:
     stranger "No going back for him now huh?"
     you "Shut up."
     chad "Well here goes nothing!"
-
+    
     menu jumpintopool:
         "Jump":
+            hide chad
             chad "AHHHHHH"
             "Hitting his head against the head of the pool, he bleeds out. You can hear all the yelling fade away."
             stranger "Bad job. Freak Accident. He died. Not a good companion."
