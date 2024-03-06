@@ -31,6 +31,7 @@ label start:
 label next_scene:
 
     $ persistent.player_pronouns = player_pronouns
+    scene bg scene1-2
 
     "You wake with a violent gasp of air"
 
@@ -43,18 +44,25 @@ label next_scene:
 
 
     # Present dialogue options to the player.
-    menu:
+    $ learnList = []
+
+    menu learn:
+        set learnList
         "Who are you?":
             stranger "I am the gatekeeper of this realm. You may call me Elysium."
+            
         "Where am I?":
             stranger "You are in the realm of the departed, the afterlife."
+            
         "Why am I here?":
             stranger "That's for you to discover. Your journey has just begun."
+            
         "I don't believe you.":
             stranger "Believe what you will, but the truth remains."
 
-    # After the player selects a dialogue option, continue with the game.
-    jump next_scene_continued
+        "Ok, I am ready...":
+            jump next_scene_continued
+    jump learn         
 
 label next_scene_continued:
     # Continue with the rest of your game.

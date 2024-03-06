@@ -2,11 +2,9 @@
 errors listed below, and try again.
 
 
-The label next_scene is defined twice, at File "game/script.rpy", line 22:
-label next_scene:
-and File "game/script.rpy", line 30:
-label next_scene:
+File "game/script.rpy", line 58: expected 'label_name' not found.
+    jump menu
+        ^
 
-
-Ren'Py Version: Ren'Py 8.2.0.24012702
-Tue Mar  5 03:07:56 2024
+Ren'Py Version: Ren'Py 8.2.1.24030407
+Tue Mar  5 19:26:02 2024
