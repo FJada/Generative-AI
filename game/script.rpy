@@ -16,6 +16,7 @@ define chad = Character("Chad")
 define you = Character("You")
 
 image chad normal = "chad_image.png"
+image chef normal = "chef_image.png"
 
 image black = "#000" 
 image white = "#ffffff" 
@@ -92,7 +93,7 @@ label next_scene:
     $ persistent.player_pronouns = player_pronouns
     python:
         import random
-        scenes = [1]  # List of scene names
+        scenes = [1,2]  # List of scene names
         next_story = random.choice(scenes)  # Choose a random scene from the list
 
     scene bg scene1-2
@@ -221,13 +222,10 @@ label bradstory1:
             "You gained: +1 Good"
             jump firstchoiceB
     
-    Elysium "Time's up"
-    jump firstchoiceA
 
     Elysium "...Interesting choice."
     Elysium "But no time to dwell, others await."
-    
-    jump end_scene
+
 
 
 
@@ -248,7 +246,7 @@ label firstchoiceA:
             chad "AHHHHHH"
             "Hitting his head against the head of the pool, Chad takes an L on life. You can hear all the yelling fade away."
             Elysium "Another 'Fratboy Freak Accident by the Pool' for the books."
-            jump secondchoice
+            jump end_scene
 
 
 label firstchoiceB:
@@ -260,14 +258,12 @@ label firstchoiceB:
     with dissolve
     chad "Hmm. Not that much fun, but at least this tastes good!"
     Elysium "Good work. He would have died if he pulled that ridiculous stunt."
-    jump secondchoice
+    $ stats["boring"] += 1
+    jump end_scene
 
-label secondchoice:
-    pass
 
 
 label end_scene:
-   
     scene bg scene1-2
     show screen gameUI
     play music "startscreen.mp3"
@@ -291,8 +287,13 @@ label end_scene:
     return
 
 label chefstory1:
+    scene bg scene6
 
     Elysium "I sense a troubled situation in a kitchen..."
+    show chef normal at left:
+        yalign 0.5
+        xalign 0.2
+    with dissolve
 
     "You enter the chaotic cooking show set, where you observe Frank, a nervous chef."
 
@@ -300,27 +301,42 @@ label chefstory1:
 
     "Frank's thoughts: 'I can't believe I signed up for this amateur show! Pressure's getting to me.'"
 
-    "Guardian Angel: (Appearing before Frank)"
-
-    Elysium "Don't worry, chef. I'm here to help lighten the mood."
+    Elysium "Dont stand there do something!"
 
     menu chefhelp:
         "Culinary Inspiration":
             Elysium "Why don't I send him an imaginary Gordon Ramsay-like voice for motivation, but with a comedic twist?'"
             "Frank: (Laughing nervously) Wait, is that Chef Ramsey... err, his hilarious twin encouraging me? It's working!"
-            # Add corresponding actions or changes to stats here
+            $ stats["good"] += 1
+            "you gained a good point"
+            jump culinaryinspiration
             
         "Kitchen Mishap Redirection":
             "Guardian Angel: 'Let's cause Frank to accidentally drop an oven mitt, diverting his attention from the stove.'"
-            "Frank: (Distracted) Oops, my mitt fell! Now I can breathe a bit."
-            # Add corresponding actions or changes to stats here
-            
-        "Audience Intervention":
-            "Guardian Angel: 'Influence a spectator to shout out a hilarious recipe, breaking the tension.'"
-            "Spectator: (Shouting) Make him cook with only spaghetti noodles from here on out! Frank chuckles and nods in agreement, easing the pressure."
-            # Add corresponding actions or changes to stats here
-            
-        "Calming Visualization":
-            "Guardian Angel: 'Gently guide Frank to imagine a serene beach, easing his nerves.'"
-            "Frank: (Closing his eyes) Ah, I can feel the sand beneath my feet... The heat here seems more manageable now"
-            # Add corresponding actions or changes to stats here
+            "Frank: (Distracted) Oops, my mitt fell! I feel like i cant breathe"
+            "The mitt bounces and causes a pan to flip over causeing a fire"
+            $ stats["evil"] += 1
+            "you gained a evil point"
+           
+        
+label culinaryinspiration:
+    scene bg scene6
+    Elysium "I sense positivity here."
+    show chef normal at left:
+        yalign 0.5
+        xalign 0.2
+    with dissolve
+    Frank "By remembering my inspiration for getting into cooking i was able to channel my skills better"
+    Frank "Thank you!"
+    jump end_scene
+
+label mishap:
+    scene bg scene6
+    Elysium "I sense a troubled situation in a kitchen..."
+    show chef normal at left:
+        yalign 0.5
+        xalign 0.2
+    with dissolve
+    Frank "Everything burned to a crisp. What will i do? This was my great grandpa's restaurant?"
+    Elysium "Wow that was really bad. I dont think ive seen fire that hot and ive been to hell before"
+    jump end_scene
