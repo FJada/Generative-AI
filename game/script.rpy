@@ -135,7 +135,7 @@ label next_scene:
         
     stranger "I am the gatekeeper of this realm. You may call me Elysium."
 
-    you "How do you know if I will be a good guardian angle?"
+    you "How do you know if I will be a good guardian angel?"
 
     stranger "We don't. This is your test, and your journey alone."
 
