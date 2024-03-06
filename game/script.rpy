@@ -28,6 +28,8 @@ label splashscreen:
     
     show white at transform_bg
     $ renpy.pause(1, hard=True) 
+
+    play sound "woof.mp3"
     
     show intro at transform_intro
     $ renpy.pause(2, hard=True) 
@@ -41,7 +43,7 @@ label splashscreen:
 
 label press_start():
     scene bg scene1-2
-    show title3:
+    show title4:
         xalign 0.5
         yalign 0.1
     menu:
