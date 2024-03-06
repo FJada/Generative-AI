@@ -7,7 +7,11 @@
     "boring": 0,
     "rainbowpower": 0
 }
+
+
 define stranger = Character("Stranger")
+define Elysium = Character("Elysium")
+define Frank = Character("Frank")
 define chad = Character("Chad")
 define you = Character("You")
 
@@ -16,6 +20,7 @@ image chad normal = "chad_image.png"
 image black = "#000" 
 image white = "#ffffff" 
 image intro = "wings.png" 
+
 
 transform transform_intro:
     on show:
@@ -83,7 +88,13 @@ label start:
 
 label next_scene:
 
+
     $ persistent.player_pronouns = player_pronouns
+    python:
+        import random
+        scene_names = [1,2]  # List of scene names
+        next_story = random.choice(scene_names)  # Choose a random scene from the list
+
     scene bg scene1-2
     play music "myserioussong.mp3"
     # Display player thoughts.
@@ -142,23 +153,28 @@ label next_scene:
 
     you "How do you know if I will be a good guardian angel?"
 
-    stranger "We don't. This is your test, and your journey alone."
+    Elysium "We don't. This is your test, and your journey alone."
 
     you "But--"
 
-    stranger "This is just prototype, grasshopper. Time to start level 1."
+    Elysium "This is just prototype, grasshopper. Time to start level 1."
 
     you "Now hold on just a min--"
 
     # Save the statistics to persist the data across sessions
     # $ save("stats", ignore=[], values=list(stats.values()))
     stop music fadeout 1.0
-    jump firstchoice
+
+    if next_story == 1:
+        jump bradstory1
+    
+    if next_story == 2:
+        jump chefstory1
 
     return    
 
 
-label firstchoice:
+label bradstory1:
 
     $ persistent.player_pronouns = player_pronouns
     $ persistent.stats = stats
@@ -179,12 +195,14 @@ label firstchoice:
     you "Oh, right."
     chad "Honestly though, its not as fun as I thought it would be..."
     chad "You know I'm the daredevil, but this place has been so lame I haven't been able to do anything crazy!"
-    stranger "...Are you going to live up to your expectations? Time to be good, guardian angel."
+    Elysium "...Are you going to live up to your expectations? Time to be good, guardian angel."
     you "Ugh, my head."
     chad "Dude, you good? You look half-dead, bro."
     you "Yeah, it's nothin'. Don't worry."
     chad "Well, I am NOT gonna chicken out. I am gonna do something sick!"
     hide chad
+
+    Elysium "You have 10 seconds to make a choice:"
 
     menu dangerouschoice:
         "Let Chad decide to jump off the balcony into the pool and simply watch":
@@ -201,13 +219,15 @@ label firstchoice:
             "You gained: +1 Good"
             jump firstchoiceB
     
-    stranger "...Interesting choice."
-    stranger "But no time to dwell, others await."
+    Elysium "Time's up"
+    jump firstchoiceA
+
+    Elysium "...Interesting choice."
+    Elysium "But no time to dwell, others await."
     
     jump end_scene
 
-    
-    
+
 
 label firstchoiceA:
     scene bg roof
@@ -215,7 +235,7 @@ label firstchoiceA:
         xalign 0.5
         yalign 0.5
     chad "Wow, this is higher than I thought."
-    stranger "You are really bad at this whole guardian angle thing."
+    Elysium "You are really bad at this whole guardian angle thing."
     you "Shut up."
     chad "Well, here goes nothing! YOLO!!"
     
@@ -224,7 +244,7 @@ label firstchoiceA:
             hide chad
             chad "AHHHHHH"
             "Hitting his head against the head of the pool, Chad takes an L on life. You can hear all the yelling fade away."
-            stranger "Another 'Fratboy Freak Accident by the Pool' for the books."
+            Elysium "Another 'Fratboy Freak Accident by the Pool' for the books."
             jump secondchoice
 
 
@@ -235,7 +255,7 @@ label firstchoiceB:
         xalign 0.2
     with dissolve
     chad "Hmm. Not that much fun, but at least this tastes good!"
-    stranger "Good work. He would have died if he pulled that ridiculous stunt."
+    Elysium "Good work. He would have died if he pulled that ridiculous stunt."
     jump secondchoice
 
 label secondchoice:
@@ -252,17 +272,21 @@ label end_scene:
     $ persistent.player_pronouns = player_pronouns
     $ persistent.stats = stats
 
-    stranger "Entertaining, as always."
+    Elysium "Entertaining, as always."
     you "So...how did I do?"
-    stranger "Let us see..."
+    Elysium "Let us see..."
 
     "Display stats"
 
     "Display Guardian Angle Score"
 
-    #flow("statistics")
-    #show "Your current stats:\n\nGood: {good}\nSassy: {evil}\nKind: {kind}\nRude: {rude}\nRainbow Power: {rainbowpower}".format(**stats)
+    # $ flow("statistics")
+    # $ show "Your current stats:\n\nGood: {good}\nSassy: {evil}\nKind: {kind}\nRude: {rude}\nRainbow Power: {rainbowpower}".format(**stats)
 
+    $ flow("statistics")
+    python:
+        stats_string = "Your current stats:\n\nGood: {good}\nSassy: {sassy}\nKind: {kind}\nRude: {rude}\nRainbow Power: {rainbowpower}".format(**stats)
+        renpy.show("statistics", stats_string)
     # Present the player with option to play again.
     menu:
         "Play Again?":
@@ -272,3 +296,35 @@ label end_scene:
     return
 
 
+label chefstory1:
+
+    "Guardian Angel: I sense a troubled situation in a kitchen..."
+    "You enter the chaotic cooking show set, where you observe Frank, a nervous chef."
+
+
+    "Frank: (Panicking) This can't be happening! I'm going to ruin everything."
+
+    "Frank's thoughts: 'I can't believe I signed up for this amateur show! Pressure's getting to me.'"
+
+
+    "Guardian Angel: (Appearing before Frank) Don't worry, chef. I'm here to help lighten the mood."
+    menu:
+        "Culinary Inspiration":
+            Elysium "Why don't I send him an imaginary Gordon Ramsay-like voice for motivation, but with a comedic twist?'"
+            "Frank: (Laughing nervously) Wait, is that Chef Ramsey... err, his hilarious twin encouraging me? It's working!"
+            # Add corresponding actions or changes to stats here
+            
+        "Kitchen Mishap Redirection":
+            "Guardian Angel: 'Let's cause Frank to accidentally drop an oven mitt, diverting his attention from the stove.'"
+            "Frank: (Distracted) Oops, my mitt fell! Now I can breathe a bit."
+            # Add corresponding actions or changes to stats here
+            
+        "Audience Intervention":
+            "Guardian Angel: 'Influence a spectator to shout out a hilarious recipe, breaking the tension.'"
+            "Spectator: (Shouting) Make him cook with only spaghetti noodles from here on out! Frank chuckles and nods in agreement, easing the pressure."
+            # Add corresponding actions or changes to stats here
+            
+        "Calming Visualization":
+            "Guardian Angel: 'Gently guide Frank to imagine a serene beach, easing his nerves.'"
+            "Frank: (Closing his eyes) Ah, I can feel the sand beneath my feet... The heat here seems more manageable now"
+            # Add corresponding actions or changes to stats here
